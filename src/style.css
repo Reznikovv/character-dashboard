@@ -1,0 +1,372 @@
+:root {
+    font-family: 'Inter', 'Roboto', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    font-weight: 500;
+
+    color-scheme: dark;
+    color: #e0e0e0;
+    background: #0a0f0f;
+    background-image: 
+        linear-gradient(45deg, #1a1a1a 25%, transparent 25%),
+        linear-gradient(-45deg, #1a1a1a 25%, transparent 25%);
+    background-size: 60px 60px;
+    background-position: 0 0, 0 30px;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at 50% 50%, rgba(100, 108, 255, 0.05) 0%, transparent 100%);
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" /><path d="M0 0 L100 100 M100 0 L0 100" stroke="%23333333" stroke-width="0.5" opacity="0.3"/></svg>');
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Брутальный заголовок */
+h1 {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: 5rem;
+    font-weight: 900;
+    text-align: center;
+    color: transparent;
+    -webkit-text-stroke: 3px #646cff;
+    text-stroke: 3px #646cff;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    margin: 20px 0 40px;
+    text-shadow: 8px 8px 0 #1a1a1a;
+    animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: skew(0deg); }
+    95% { transform: skew(0deg); }
+    96% { transform: skew(5deg); }
+    97% { transform: skew(-5deg); }
+    98% { transform: skew(3deg); }
+    99% { transform: skew(-3deg); }
+}
+
+/* Индустриальная сетка */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+/* Металлическая карточка */
+.card {
+    background: linear-gradient(145deg, #1e1e1e, #151515);
+    border: 2px solid #333;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.5),
+        inset 0 0 20px rgba(100, 108, 255, 0.2);
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Металлический блеск */
+.card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(100, 108, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: rotate(30deg);
+    animation: shine 6s infinite linear;
+}
+
+@keyframes shine {
+    from { transform: rotate(30deg) translateX(-100%); }
+    to { transform: rotate(30deg) translateX(100%); }
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: #646cff;
+    box-shadow: 
+        0 20px 30px rgba(100, 108, 255, 0.3),
+        inset 0 0 30px rgba(100, 108, 255, 0.3);
+}
+
+/* Название как на ящике с инструментами */
+.card h2 {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(90deg, #1a1a1a, #2a2a2a);
+    border-bottom: 3px solid #646cff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Информация */
+.info {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.info p {
+    margin: 0;
+    padding: 10px;
+    background: #1a1a1a;
+    border-left: 3px solid #646cff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.info p::before {
+    content: '⦿';
+    color: #646cff;
+    font-size: 1.2rem;
+}
+
+/* Статусные эмодзи */
+.status-alive {
+    color: #4caf50;
+    font-weight: 700;
+}
+
+.status-alive::after {
+    content: ' ⚡';
+    color: #4caf50;
+}
+
+.status-dead {
+    color: #f44336;
+    font-weight: 700;
+}
+
+.status-dead::after {
+    content: ' ☠️';
+    color: #f44336;
+}
+
+.status-unknown {
+    color: #ff9800;
+    font-weight: 700;
+}
+
+.status-unknown::after {
+    content: ' ?';
+    color: #ff9800;
+}
+
+/* Эпизоды как счетчик */
+.episodes {
+    display: block;
+    padding: 10px 20px;
+    background: #000;
+    color: #646cff;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-align: center;
+    border-top: 2px solid #333;
+    letter-spacing: 2px;
+}
+
+.episodes::before {
+    content: '#';
+    margin-right: 5px;
+}
+
+/* Поле поиска — индустриальное */
+.search {
+    width: 100%;
+    max-width: 500px;
+    margin: 30px auto;
+    display: block;
+    padding: 15px 25px;
+    background: #1a1a1a;
+    border: 3px solid #333;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    border-radius: 0;
+}
+
+.search::placeholder {
+    color: #444;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+.search:focus {
+    outline: none;
+    border-color: #646cff;
+    background: #000;
+    box-shadow: 0 0 20px rgba(100, 108, 255, 0.3);
+}
+
+/* Кнопка — как стальной переключатель */
+.button {
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    border: 3px solid #333;
+    border-radius: 0;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 20px auto;
+    display: block;
+    width: fit-content;
+    position: relative;
+    overflow: hidden;
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 108, 255, 0.3), transparent);
+    transition: left 0.3s ease;
+}
+
+.button:hover::before {
+    left: 100%;
+}
+
+.button:hover {
+    border-color: #646cff;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    transform: scale(1.05);
+}
+
+/* Анимация загрузки — как радар */
+@keyframes radar {
+    0% { transform: rotate(0deg); opacity: 1; }
+    100% { transform: rotate(360deg); opacity: 0.5; }
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 50px 0;
+}
+
+.loading span {
+    width: 15px;
+    height: 15px;
+    background: #646cff;
+    border-radius: 0;
+    transform: rotate(45deg);
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.loading span:nth-child(2) {
+    animation-delay: 0.2s;
+    background: #fff;
+}
+
+.loading span:nth-child(3) {
+    animation-delay: 0.4s;
+    background: #646cff;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: rotate(45deg) scale(1);
+        box-shadow: 0 0 10px #646cff;
+    }
+    50% { 
+        transform: rotate(45deg) scale(1.5);
+        box-shadow: 0 0 30px #646cff;
+    }
+}
+
+/* Скроллбар — грубый металл */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #333, #444);
+    border: 2px solid #222;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #444, #646cff);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem;
+        -webkit-text-stroke: 2px #646cff;
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .info {
+        grid-template-columns: 1fr;
+    }
+    
+    .info p {
+        justify-content: flex-start;
+    }
+}
